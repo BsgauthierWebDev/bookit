@@ -12,7 +12,7 @@
 
 .book_li:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    background-color: #eeeed4;
+    background-color: #ededed;
 }
 
 .book_info {
@@ -33,19 +33,23 @@
 /* A link that has not been visited */
 a:link {
     text-decoration: none;
+    color: black;
 }
 
 /* A link that has been visited */
 a:visited {
     text-decoration: none;
+    color: black;
 }
 
 /* A link that is hovered on */
 a:hover {
     text-decoration: none;
+    color: black;
 }
 
 /* A link that is selected */
 a:active {
     text-decoration: none;
+    color: black;
 }

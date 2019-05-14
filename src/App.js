@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Header/Header';
 import SearchBar from './SearchBar/SearchBar';
 import BookList from './BookList/BookList';
+import Filter from './Filter/Filter';
 
 export default class App extends Component {
 
@@ -320,12 +321,52 @@ export default class App extends Component {
     ]
   }
   
+  componentDidMount = () => {
+    // fetches data with the search params from user input.
+  }
+
+  handleSearchInput = ( searchQuery ) => {
+    // this function will take in a search string and pass it to state. 
+    // componendidmount will then take that query and fetch data.
+  }
+
+  handlePrintTypeFilter = ( printTypeFormEvent, handleFilter ) => {
+    return printTypeFormEvent 
+      ? handleFilter( printTypeFormEvent )
+      : false;
+  }
+
+  handleBookTypeFilter = ( bookTypeFormEvent, handleFilter ) => {
+    return bookTypeFormEvent 
+      ? handleFilter( bookTypeFormEvent )
+      : false;
+  }
+
+  handleFilter = ( filterOptions ) => {
+    // takes the filters and passes them to state. 
+    // if the user sets inputs on either or both of these, either or both of those 
+    // filterOptions props will be true, containing the value(s) passed up the tree
+    // from Filter's local handler.
+    // make some useful combined object to be sent back to the overall handler for filters in App.
+    // basically, this triggers if either form gets input. it then passes either/both of those 
+    // input values up the tree to props.handleFilterInput, which will add the input(s) to state
+    // for a new data fetch round and then a rerender.
+    const printTypeInput = filterOptions.printType;
+    const bookTypeInput = filterOptions.bookType;
+    console.log(printTypeInput, bookTypeInput);
+  }
+
   render() {
     const { bookResults } = this.state;
     return (
       <>
         <Header />
-        <SearchBar />
+        <SearchBar 
+          searchHandler={ this.handleSearchInput } />
+        <Filter
+          handlePrintTypeFilter={ this.handlePrintTypeFilter }
+          handleBookTypeFilter={ this.handleBookTypeFilter }
+          handleFilterInput={ this.handleFilter } />
         <BookList 
           bookResults={ bookResults } />
       </>
