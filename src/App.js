@@ -15,34 +15,34 @@ export default class App extends Component {
     printFilter: ''
   }
   
-  // componentDidMount() {
-  //   // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
-  //   console.log('component mounted!')
-  //   // const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
-  //   const url = 'https://www.googleapis.com/books/v1/volumes?q=flowers&key='
-  //   const apiKey = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
-  //   const fullUrl = url + apiKey;
-  //   fetch( fullUrl )
-  //     .then(response => {
-  //       if(!response.ok) {
-  //         throw new Error('Something went wrong on the network. Please try again later.');
-  //       }
-  //       return response;
-  //     })
-  //     .then(response => response.json())
-  //     .then(bookResultsObj => {
-  //       console.log('Good response From Google Books API: ', bookResultsObj)
-  //       this.setState({
-  //         bookResults: bookResultsObj,
-  //         error: null
-  //       });
-  //     })
-  //     .catch(error => {
-  //       this.setState({
-  //         error: error.message
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+    console.log('component mounted!')
+    // const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
+    const url = 'https://www.googleapis.com/books/v1/volumes?q=harrypotter&key='
+    const apiKey = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
+    const fullUrl = url + apiKey;
+    fetch( fullUrl )
+      .then(response => {
+        if(!response.ok) {
+          throw new Error('Something went wrong on the network. Please try again later.');
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(bookResultsObj => {
+        console.log('Good response From Google Books API: ', bookResultsObj)
+        this.setState({
+          bookResults: bookResultsObj,
+          error: null
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message
+        });
+      });
+  }
 
   handleSearchSubmit = ( searchSubmitEvent, searchInput ) => {
     searchSubmitEvent.preventDefault();
@@ -70,7 +70,6 @@ export default class App extends Component {
 
   render() {
     const { bookResults } = this.state;
-    // console.log('bookResults from state in render of App', bookResults)
     return (
       <>
         <Header />

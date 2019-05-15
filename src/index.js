@@ -871,7 +871,6 @@ const starterLotrResults = {
     ]
    };   
 
-// const parsedStarterResults = starterResults.json();
-
 ReactDOM.render(<App 
-                    starterBookResults={ starterLotrResults } />, document.getElementById('root'));
+                    starterBookResults={ starterLotrResults } />, 
+                document.getElementById('root'));
