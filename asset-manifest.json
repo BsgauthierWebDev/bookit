@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bookit/static/css/main.faf7b156.chunk.css",
-    "main.js": "/bookit/static/js/main.72b3d8ab.chunk.js",
-    "main.js.map": "/bookit/static/js/main.72b3d8ab.chunk.js.map",
+    "main.css": "/bookit/static/css/main.118b3be3.chunk.css",
+    "main.js": "/bookit/static/js/main.127e23d2.chunk.js",
+    "main.js.map": "/bookit/static/js/main.127e23d2.chunk.js.map",
     "runtime~main.js": "/bookit/static/js/runtime~main.73b09827.js",
     "runtime~main.js.map": "/bookit/static/js/runtime~main.73b09827.js.map",
     "static/js/2.d6a534e5.chunk.js": "/bookit/static/js/2.d6a534e5.chunk.js",
     "static/js/2.d6a534e5.chunk.js.map": "/bookit/static/js/2.d6a534e5.chunk.js.map",
     "index.html": "/bookit/index.html",
-    "precache-manifest.bdd5367edb76c83aab692442c290eed3.js": "/bookit/precache-manifest.bdd5367edb76c83aab692442c290eed3.js",
+    "precache-manifest.9846022c1e7aac77a2c45c0bbde81425.js": "/bookit/precache-manifest.9846022c1e7aac77a2c45c0bbde81425.js",
     "service-worker.js": "/bookit/service-worker.js",
-    "static/css/main.faf7b156.chunk.css.map": "/bookit/static/css/main.faf7b156.chunk.css.map"
+    "static/css/main.118b3be3.chunk.css.map": "/bookit/static/css/main.118b3be3.chunk.css.map"
   }
 }
