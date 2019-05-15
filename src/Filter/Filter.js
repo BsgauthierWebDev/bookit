@@ -3,13 +3,14 @@ import './Filter.css'
 
 export default function Filter( props ) {
 
-    const { handlePrintType, handleBookType, handleFilter } = props;
+    const { handlePrintType, handleBookType } = props;
     return (
-        <>
+        <div className="filter_bar_container">
+            <label>Print Type:</label>
             <form 
                 action="" 
                 className="print_type_filter_form"
-                onChange={ e => handlePrintType( e.target.value, handleFilter ) }>
+                onChange={ e => handlePrintType( e.target.value ) }>
                 <select 
                     name="print-type-filter">
                     <option 
@@ -25,11 +26,12 @@ export default function Filter( props ) {
                         Only Magazines
                     </option>
                 </select>
-            </form> 
+            </form>
+            <label>Book Type:</label> 
             <form 
                 action="" 
                 className="book_type_filter_form"
-                onChange={ e => handleBookType( e.target.value, handleFilter ) }>
+                onChange={ e => handleBookType( e.target.value ) }>
                 <select 
                     name="book-type-filter">
                     <option 
@@ -54,6 +56,6 @@ export default function Filter( props ) {
                     </option>
                 </select>
             </form> 
-        </>
+        </div>
     );
 }

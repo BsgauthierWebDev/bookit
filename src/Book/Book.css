@@ -18,16 +18,13 @@
 .book_info {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .book_image {
     align-self: center;
-}
-
-.book_snippet {
-    padding-right: 100px;
-    padding-left: 100px;
 }
 
 /* A link that has not been visited */
