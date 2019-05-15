@@ -14,7 +14,7 @@ export default function Book( props ) {
 
     // Not all responses are created equal... The below is to handle irregular responses, which do happen with this API.
     if ( book.volumeInfo ) {
-        author = book.volumeInfo.authors[0] !== undefined
+        author = book.volumeInfo.authors !== undefined
             ? book.volumeInfo.authors[0]
             : 'No authors listed'
         title = book.volumeInfo.title !== undefined

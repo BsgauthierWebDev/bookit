@@ -10,19 +10,49 @@ export default class App extends Component {
 
   state = {
     bookResults: this.props.starterBookResults,
-    searchQuery: '', 
+    searchQuery: 'lord+of+the+rings', 
     bookFilter: '', 
     printFilter: ''
   }
   
-  componentDidMount() {
-    // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
-    console.log('component mounted!')
-    // const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=harrypotter&key='
-    const apiKey = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
-    const fullUrl = url + apiKey;
-    fetch( fullUrl )
+  // componentDidMount() {
+  //   console.log('component mounted!')
+  //   const baseUrl = 'https://www.googleapis.com/books/v1/volumes'
+  //   const key = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
+  //   const formattedSearchUrl = this.formatQuery( baseUrl, key )
+  //   fetch( formattedSearchUrl )
+  //     .then(response => {
+  //       if(!response.ok) {
+  //         throw new Error('Something went wrong on the network. Please try again later.');
+  //       }
+  //       return response;
+  //     })
+  //     .then(response => response.json())
+  //     .then(bookResultsObj => {
+  //       console.log('Good response From Google Books API: ', bookResultsObj)
+  //       this.setState({
+  //         bookResults: bookResultsObj,
+  //         error: null
+  //       });
+  //     })
+  //     .catch(error => {
+  //       this.setState({
+  //         error: error.message
+  //       });
+  //     });
+  // }
+
+  handleSearchSubmit = ( searchSubmitEvent, searchInput ) => {
+    searchSubmitEvent.preventDefault();
+    console.log('handleSearchSubmit just got this submission: ', searchInput);
+    console.log('searchInput was this --> ', this.state.searchQuery);
+    this.setState({
+      searchQuery: searchInput
+    });
+    const baseUrl = 'https://www.googleapis.com/books/v1/volumes'
+    const key = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
+    const formattedSearchUrl = this.formatQuery( baseUrl, searchInput, key );
+    fetch( formattedSearchUrl )
       .then(response => {
         if(!response.ok) {
           throw new Error('Something went wrong on the network. Please try again later.');
@@ -44,16 +74,27 @@ export default class App extends Component {
       });
   }
 
-  handleSearchSubmit = ( searchSubmitEvent, searchInput ) => {
-    searchSubmitEvent.preventDefault();
-    console.log('handleSearchSubmit just got this submission: ', searchInput);
-    this.setState({
-      searchQuery: searchInput
-    });
+  formatQuery = ( baseUrl, searchInput, key ) => {
+    // e.g. https://www.googleapis.com/books/v1/volumes?q=time&printType=magazines&key=yourAPIKey
+    const { bookFilter, printFilter } = this.state;
+    let formattedQuery;
+    if ( searchInput !== '') {
+      formattedQuery = '?q=' + searchInput; 
+    }
+    if ( bookFilter !== '') {
+      formattedQuery = formattedQuery + '&filter=' + bookFilter;
+    }
+    if ( printFilter !== '') {
+      formattedQuery = formattedQuery + '&bookType=' + printFilter;
+    }
+    const formattedUrl  = baseUrl + formattedQuery + '&key=' + key; 
+    console.log('formatted URL: ', formattedUrl);   
+    return formattedUrl;    
   }
 
   handlePrintType = ( printTypeFormEvent ) => {
     if ( printTypeFormEvent ) {
+      console.log(printTypeFormEvent);
       this.setState({
           printFilter: printTypeFormEvent
       });
@@ -62,6 +103,7 @@ export default class App extends Component {
 
   handleBookType = ( bookTypeFormEvent ) => {
     if ( bookTypeFormEvent ) {
+      console.log(bookTypeFormEvent);
       this.setState({
           bookFilter: bookTypeFormEvent
       });
@@ -70,6 +112,7 @@ export default class App extends Component {
 
   render() {
     const { bookResults } = this.state;
+    console.log('Re-rendering app component')
     return (
       <>
         <Header />

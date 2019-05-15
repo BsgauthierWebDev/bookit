@@ -9,19 +9,20 @@ export default class SearchBar extends Component {
     }
 
     handleSearchInput = ( searchEvent ) => {
-        console.log('handleSearchInput in SearchBar Component just received: ', searchEvent.target.value);
+        // console.log('handleSearchInput in SearchBar Component just received: ', searchEvent.target.value);
         this.setState({
           searchInput: searchEvent.target.value
         });
     }
     render() {
         const { handleSearchSubmit } = this.props;
+        const { searchInput } = this.state;
         return (
             <>
                 <div className="searchbar_container">
                     <form 
                         className="searchbar_form"
-                        onSubmit={ submitEvent => handleSearchSubmit(submitEvent, this.state.searchInput) }>
+                        onSubmit={ submitEvent => handleSearchSubmit(submitEvent, searchInput) }>
                         <input 
                             className="searchbar_input" 
                             type="text" 
