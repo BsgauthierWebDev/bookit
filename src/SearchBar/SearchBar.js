@@ -1,7 +1,6 @@
 import React, { Component }from 'react';
 import './SearchBar.css';
-// I -- nothing
-// O -- the search term the user inputs, sends it to App for fetch and state mgmt
+
 export default class SearchBar extends Component {
     
     state = {
@@ -9,7 +8,6 @@ export default class SearchBar extends Component {
     }
 
     handleSearchInput = ( searchEvent ) => {
-        // console.log('handleSearchInput in SearchBar Component just received: ', searchEvent.target.value);
         this.setState({
           searchInput: searchEvent.target.value
         });
@@ -35,5 +33,4 @@ export default class SearchBar extends Component {
             </>
         );
     }
-    
 }

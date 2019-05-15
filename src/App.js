@@ -14,38 +14,9 @@ export default class App extends Component {
     bookFilter: '', 
     printFilter: ''
   }
-  
-  // componentDidMount() {
-  //   console.log('component mounted!')
-  //   const baseUrl = 'https://www.googleapis.com/books/v1/volumes'
-  //   const key = 'AIzaSyCQyLInHW1z1Ev9qqwwdG0MBqxdFcD542w';
-  //   const formattedSearchUrl = this.formatQuery( baseUrl, key )
-  //   fetch( formattedSearchUrl )
-  //     .then(response => {
-  //       if(!response.ok) {
-  //         throw new Error('Something went wrong on the network. Please try again later.');
-  //       }
-  //       return response;
-  //     })
-  //     .then(response => response.json())
-  //     .then(bookResultsObj => {
-  //       console.log('Good response From Google Books API: ', bookResultsObj)
-  //       this.setState({
-  //         bookResults: bookResultsObj,
-  //         error: null
-  //       });
-  //     })
-  //     .catch(error => {
-  //       this.setState({
-  //         error: error.message
-  //       });
-  //     });
-  // }
 
   handleSearchSubmit = ( searchSubmitEvent, searchInput ) => {
     searchSubmitEvent.preventDefault();
-    console.log('handleSearchSubmit just got this submission: ', searchInput);
-    console.log('searchInput was this --> ', this.state.searchQuery);
     this.setState({
       searchQuery: searchInput
     });
@@ -94,7 +65,6 @@ export default class App extends Component {
 
   handlePrintType = ( printTypeFormEvent ) => {
     if ( printTypeFormEvent ) {
-      console.log(printTypeFormEvent);
       this.setState({
           printFilter: printTypeFormEvent
       });
@@ -103,7 +73,6 @@ export default class App extends Component {
 
   handleBookType = ( bookTypeFormEvent ) => {
     if ( bookTypeFormEvent ) {
-      console.log(bookTypeFormEvent);
       this.setState({
           bookFilter: bookTypeFormEvent
       });
@@ -112,15 +81,24 @@ export default class App extends Component {
 
   render() {
     const { bookResults } = this.state;
-    console.log('Re-rendering app component')
+    
+    // don't show filter selectors on mobile. Bad UX.
+    const isMobile = window.innerWidth <= 500;
+    let responsiveFilter;
+    if ( isMobile ) {
+      responsiveFilter = null;
+    } else {
+      responsiveFilter = <Filter
+                            handlePrintType={ this.handlePrintType }
+                            handleBookType={ this.handleBookType } />
+    }
+    
     return (
       <>
         <Header />
         <SearchBar 
           handleSearchSubmit={ this.handleSearchSubmit }/>
-        <Filter
-          handlePrintType={ this.handlePrintType }
-          handleBookType={ this.handleBookType } />
+        { responsiveFilter }
         <BookList 
           bookResults={ bookResults } />
       </>

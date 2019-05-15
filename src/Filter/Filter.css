@@ -14,3 +14,9 @@ label {
 .print_type_filter_form {
     margin-right: 50px;
 }
+
+@media only screen and (max-width: 600px) {
+    .filter_bar_container, .print_type_filter_form, .book_type_filter_form {
+        display: hidden;
+    }
+  }
